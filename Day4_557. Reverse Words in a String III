@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string reversedSentence;
+        string word;
+        
+        size_t startPos = 0;
+        size_t endPos = s.find(' ');
+
+        while (endPos != string::npos) {
+            word = s.substr(startPos, endPos - startPos);
+            reverse(word.begin(), word.end());
+            reversedSentence += word + ' ';
+            
+            startPos = endPos + 1;
+            endPos = s.find(' ', startPos);
+        }
+        
+        word = s.substr(startPos);
+        reverse(word.begin(), word.end());
+        reversedSentence += word;
+        
+        return reversedSentence;
+    }
+};
