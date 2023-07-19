@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int m = image.size();
+        int n = image[0].size();
+        
+        // Check if the starting pixel has the same color as the new color
+        if (image[sr][sc] == color) {
+            return image;
+        }
+        
+        // Store the original color of the starting pixel
+        int originalColor = image[sr][sc];
+        
+        // Call the DFS function to perform the flood fill
+        dfs(image, sr, sc, m, n, originalColor, color);
+        
+        return image;
+    }
+    
+private:
+    void dfs(vector<vector<int>>& image, int row, int col, int m, int n, int originalColor, int newColor) {
+        // Check if the current pixel is within the image boundaries and has the original color
+        if (row < 0 || row >= m || col < 0 || col >= n || image[row][col] != originalColor) {
+            return;
+        }
+        
+        // Update the color of the current pixel to the new color
+        image[row][col] = newColor;
+        
+        // Recursively perform flood fill on adjacent pixels (4-directions: up, down, left, right)
+        dfs(image, row - 1, col, m, n, originalColor, newColor); // Up
+        dfs(image, row + 1, col, m, n, originalColor, newColor); // Down
+        dfs(image, row, col - 1, m, n, originalColor, newColor); // Left
+        dfs(image, row, col + 1, m, n, originalColor, newColor); // Right
+    }
+};
