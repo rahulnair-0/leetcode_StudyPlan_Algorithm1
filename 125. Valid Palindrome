@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int n = s.length();
+        int f = 0, b = n - 1;
+        while (f <= b) {
+            if (iswalnum(s[f]) && iswalnum(s[b])) {
+                if (toupper(s[f]) == toupper(s[b])) {
+                    f++;
+                    b--;
+                } else {
+                    return false;
+                }
+            } else {
+               if(!iswalnum(s[f]))
+               f++;
+               if(!iswalnum(s[b]))
+               b--;
+            }
+        }
+        return true;
+    }
+};
