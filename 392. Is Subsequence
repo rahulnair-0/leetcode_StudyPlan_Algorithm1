@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int n=s.length(),m=t.length();
+        if(n>m)
+            return false;
+        string x=s+t;
+        int f=n-1,b=x.length()-1;
+        while(true)
+        {
+            if(f==-1)
+                return true;
+            if(b==n-1)
+                return false;
+            if(x[f]!=x[b])
+            {
+                b--;
+            }
+            else 
+            {
+                b--;f--;
+            }
+        }
+    }
+};
