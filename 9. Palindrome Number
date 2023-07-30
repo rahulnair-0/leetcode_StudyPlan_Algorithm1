@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string z = to_string(x);
+        int f=0,b=z.length()-1;
+        while(f<=b)
+        {
+            if(z[f]!=z[b])
+            return false;
+            f++;b--;
+        }
+        return true;
+
+    }
+};
