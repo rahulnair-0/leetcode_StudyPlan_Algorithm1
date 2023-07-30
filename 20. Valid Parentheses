@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> x;
+        x.push(1);//this is to avoid an runtime error i encountered..dk much about it.
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]=='(' || s[i] == '{' || s[i]== '[')
+            {
+                x.push(s[i]);
+            }
+            else
+            {
+                if(x.top()=='{' && (s[i]==']' || s[i]==')'))
+                    return false;
+                else if(x.top()=='[' && (s[i]=='}' || s[i]==')'))
+                    return false;
+                else if(x.top()=='(' && (s[i]==']' || s[i]=='}'))
+                    return false;
+                else if((x.top()=='{' && s[i]=='}') || (x.top()=='(' && s[i]==')') || (x.top()=='[' && s[i]==']'))
+                    x.pop();
+                    else
+                        return false;
+            }
+        }
+        if(x.top()==1)
+            return true;
+        return false;
+    }
+};
