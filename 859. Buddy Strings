@@ -1,0 +1,37 @@
+class Solution {
+public:
+    bool buddyStrings(string s, string goal) {
+        int n = s.length();
+        int m = goal.length();
+        if (n != m || n == 0 || m == 0) {
+            return false;
+        }
+        if (s == goal) {
+            unordered_set<char> seen;
+            for (char ch : s) {
+                if (seen.count(ch)) {
+                    return true;
+                }
+                seen.insert(ch);
+            }
+            return false;
+        }
+        int firstMismatch = -1, secondMismatch = -1;
+        for (int i = 0; i < n; i++) {
+            if (s[i] != goal[i]) {
+                if (firstMismatch == -1) {
+                    firstMismatch = i;
+                } else if (secondMismatch == -1) {
+                    secondMismatch = i;
+                } else {
+                    return false;
+                }
+            }
+        }
+        if (firstMismatch != -1 && secondMismatch != -1) {
+            return s[firstMismatch] == goal[secondMismatch] && s[secondMismatch] == goal[firstMismatch];
+        }
+
+        return false;
+    }
+};
